@@ -1,0 +1,22 @@
+.signup-wrapper {
+  height: 100vh;
+}
+
+/* LEFT SIDE */
+.left-side {
+  background: linear-gradient(135deg, #4184f3, #2b6edc);
+  text-align: center;
+  padding: 40px;
+}
+
+.left-image {
+  width: 100%;
+  max-width: 400px;
+  margin-top: 20px;
+}
+
+/* CARD */
+.signup-card {
+  width: 350px;
+  border-radius: 10px;
+}
