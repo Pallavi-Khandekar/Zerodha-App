@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 
 import { Link, useLocation } from "react-router-dom";
+import { API_BASE_URL, LANDING_URL } from "../config";
 
 const Menu = () => {
   const [isProfileDropdownOpen, setIsProfileDropdownOpen] = useState(false);
@@ -51,8 +52,8 @@ const Menu = () => {
 
     try {
       const [holdingsResponse, positionsResponse] = await Promise.all([
-        fetch(`http://localhost:3002/allHoldings?userId=${encodeURIComponent(userId)}`),
-        fetch(`http://localhost:3002/allPositions?userId=${encodeURIComponent(userId)}`),
+        fetch(`${API_BASE_URL}/allHoldings?userId=${encodeURIComponent(userId)}`),
+        fetch(`${API_BASE_URL}/allPositions?userId=${encodeURIComponent(userId)}`),
       ]);
 
       if (!holdingsResponse.ok || !positionsResponse.ok) {
@@ -83,11 +84,15 @@ const Menu = () => {
   return (
     <div className="menu-container">
       <a
-        href="http://localhost:3000"
+        href={LANDING_URL}
         aria-label="Go to home page"
         className="menu-logo-link"
       >
-        <img src="/logo.png" style={{ width: "50px" }} alt="Shrivest logo" />
+        <img
+          src={`${process.env.PUBLIC_URL}/logo.png`}
+          style={{ width: "50px", height: "50px", objectFit: "contain" }}
+          alt="Shrivest logo"
+        />
       </a>
       <div className="menus">
         <button
@@ -104,7 +109,7 @@ const Menu = () => {
         <ul className={isMobileMenuOpen ? "mobile-menu-open" : ""}>
           <li>
             <a
-              href="http://localhost:3000"
+              href={LANDING_URL}
               style={{ textDecoration: "none" }}
             >
               <p className={menuClass}>Home</p>

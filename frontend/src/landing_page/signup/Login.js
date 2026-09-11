@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useLocation } from "react-router-dom";
+import { API_BASE_URL, DASHBOARD_URL } from "../../config";
 
 function Login() {
   const location = useLocation();
@@ -20,7 +21,7 @@ function Login() {
     setMessage("");
 
     try {
-      const response = await fetch("http://localhost:3002/auth/login", {
+      const response = await fetch(`${API_BASE_URL}/auth/login`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data),
@@ -33,7 +34,7 @@ function Login() {
 
       localStorage.setItem("userId", result.user.id);
       localStorage.setItem("userName", result.user.name);
-      window.location.assign(`http://localhost:3001?userId=${result.user.id}&userName=${encodeURIComponent(result.user.name)}`);
+      window.location.assign(`${DASHBOARD_URL}?userId=${result.user.id}&userName=${encodeURIComponent(result.user.name)}`);
     } catch (error) {
       setMessage(error.message);
       setIsSubmitting(false);

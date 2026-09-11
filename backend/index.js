@@ -8,7 +8,7 @@ const PORT = process.env.PORT || 3002;
 async function startServer() {
   await connectDatabase();
 
-  app.listen(PORT, () => {
+  app.listen(PORT, "0.0.0.0", () => {
     console.log(`Backend server listening on port ${PORT}`);
   });
 }

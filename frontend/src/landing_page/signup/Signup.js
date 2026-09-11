@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "./signup.css";
 import { useNavigate, Link } from "react-router-dom";
+import { API_BASE_URL, DASHBOARD_URL } from "../../config";
 
 function Signup() {
   const navigate = useNavigate();
@@ -30,7 +31,7 @@ function Signup() {
     setMessage("");
 
     try {
-      const response = await fetch("http://localhost:3002/auth/signup", {
+      const response = await fetch(`${API_BASE_URL}/auth/signup`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(form),
@@ -44,7 +45,7 @@ function Signup() {
       localStorage.setItem("userId", result.user.id);
       localStorage.setItem("userName", result.user.name);
       window.location.assign(
-        `http://localhost:3001?userId=${result.user.id}&userName=${encodeURIComponent(result.user.name)}`
+        `${DASHBOARD_URL}?userId=${result.user.id}&userName=${encodeURIComponent(result.user.name)}`
       );
     } catch (error) {
       setMessage(error.message);
@@ -63,7 +64,7 @@ function Signup() {
           <p className="mb-4">Start your investment journey today</p>
 
           <img
-            src="media/images/signup.png"
+            src={`${process.env.PUBLIC_URL}/media/images/signup.png`}
             alt="trading"
             className="left-image"
           />

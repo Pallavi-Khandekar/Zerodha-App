@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { API_BASE_URL } from "../config";
 
 const Orders = () => {
   const [orders, setOrders] = useState([]);
@@ -9,7 +10,7 @@ const Orders = () => {
   useEffect(() => {
     if (!userId) return;
 
-    fetch(`http://localhost:3002/orders?userId=${encodeURIComponent(userId)}`)
+    fetch(`${API_BASE_URL}/orders?userId=${encodeURIComponent(userId)}`)
       .then((response) => response.json())
       .then((data) => setOrders(data));
   }, [userId]);

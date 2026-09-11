@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { VerticalGraph } from "./VerticalGraph";
+import { API_BASE_URL } from "../config";
 
 // import { holdings } from "../data/data";
 
@@ -14,7 +15,7 @@ const Holdings = () => {
     if (!userId) return;
 
     axios
-      .get(`http://localhost:3002/allHoldings?userId=${encodeURIComponent(userId)}`)
+      .get(`${API_BASE_URL}/allHoldings?userId=${encodeURIComponent(userId)}`)
       .then((res) => setAllHoldings(res.data));
   }, []);
 

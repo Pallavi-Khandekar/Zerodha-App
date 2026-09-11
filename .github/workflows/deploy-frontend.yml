@@ -37,7 +37,25 @@ jobs:
 
       - name: Build frontend
         working-directory: ./frontend
+        env:
+          REACT_APP_API_URL: ${{ vars.REACT_APP_API_URL }}
+          REACT_APP_DASHBOARD_URL: https://pallavi-khandekar.github.io/Zerodha-App/dashboard
         run: npm run build
+
+      - name: Install dashboard dependencies
+        working-directory: ./dashboard
+        run: npm ci
+
+      - name: Build dashboard
+        working-directory: ./dashboard
+        env:
+          PUBLIC_URL: /Zerodha-App/dashboard
+          REACT_APP_API_URL: ${{ vars.REACT_APP_API_URL }}
+          REACT_APP_LANDING_URL: https://pallavi-khandekar.github.io/Zerodha-App
+        run: npm run build
+
+      - name: Add dashboard to Pages site
+        run: cp -R ./dashboard/build ./frontend/build/dashboard
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3

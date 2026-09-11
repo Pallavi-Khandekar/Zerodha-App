@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 
 import GeneralContext from "./GeneralContext";
+import { API_BASE_URL } from "../config";
 
 import "./BuyActionWindow.css";
 
@@ -35,7 +36,7 @@ const BuyActionWindow = ({ uid, mode }) => {
     setError("");
 
     try {
-      await axios.post("http://localhost:3002/newOrder", {
+      await axios.post(`${API_BASE_URL}/newOrder`, {
         name: uid,
         qty,
         price,

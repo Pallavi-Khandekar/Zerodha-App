@@ -1,4 +1,5 @@
 import React from "react";
+import { API_BASE_URL } from "../config";
 
 const Positions = () => {
   const [positions, setPositions] = React.useState([]);
@@ -9,7 +10,7 @@ const Positions = () => {
       localStorage.getItem("userId");
     if (!userId) return;
 
-    fetch(`http://localhost:3002/allPositions?userId=${encodeURIComponent(userId)}`)
+    fetch(`${API_BASE_URL}/allPositions?userId=${encodeURIComponent(userId)}`)
       .then((response) => response.json())
       .then((data) => setPositions(data));
   }, []);

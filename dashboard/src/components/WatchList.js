@@ -1,6 +1,7 @@
 import React, { useState, useContext, useEffect } from "react";
 
 import axios from "axios";
+import { API_BASE_URL } from "../config";
 
 import GeneralContext from "./GeneralContext";
 
@@ -26,7 +27,7 @@ const WatchList = () => {
       return;
     }
     axios
-      .get(`http://localhost:3002/watchlist?userId=${encodeURIComponent(userId)}`)
+      .get(`${API_BASE_URL}/watchlist?userId=${encodeURIComponent(userId)}`)
       .then((response) => setWatchlist(response.data))
       .catch(() => setWatchlist([]));
   }, [userId]);
