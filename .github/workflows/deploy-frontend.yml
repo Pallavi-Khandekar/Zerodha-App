@@ -38,6 +38,7 @@ jobs:
       - name: Build frontend
         working-directory: ./frontend
         env:
+          CI: false
           REACT_APP_API_URL: ${{ vars.REACT_APP_API_URL }}
           REACT_APP_DASHBOARD_URL: https://pallavi-khandekar.github.io/Zerodha-App/dashboard
         run: npm run build
@@ -49,6 +50,7 @@ jobs:
       - name: Build dashboard
         working-directory: ./dashboard
         env:
+          CI: false
           PUBLIC_URL: /Zerodha-App/dashboard
           REACT_APP_API_URL: ${{ vars.REACT_APP_API_URL }}
           REACT_APP_LANDING_URL: https://pallavi-khandekar.github.io/Zerodha-App
